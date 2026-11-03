@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soldout-Tickets.de – Ausverkauft? Wir finden Tickets.</title>
+<style>
+:root{--ink:#1a0630;--ink2:#2a0c4a;--pink:#ff2e88;--yellow:#ffe600;--cyan:#19e3ff;--paper:#fff6e8;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:"DM Sans",system-ui,sans-serif;font-size:1.05rem;line-height:1.55}
+h1,h2,h3{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;line-height:.95;margin:0;letter-spacing:.01em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0}
+.logo{font-family:Anton,Impact,sans-serif;font-size:1.5rem;text-decoration:none}
+.logo b{color:var(--pink);font-weight:400}
+nav a{margin-left:1.25rem;text-decoration:none;font-weight:500}
+nav a:hover{color:var(--yellow)}
+/* Hero */
+.hero{padding:2.5rem 0 4rem;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:auto -10% -35% 30%;height:80%;background:radial-gradient(closest-side,var(--pink),transparent 70%);opacity:.45;pointer-events:none}
+.stub{position:relative;display:inline-block;transform:rotate(-3deg);margin-bottom:1.5rem}
+.stub h1{font-size:clamp(3.4rem,13vw,9rem);color:var(--paper);text-transform:uppercase}
+.stub .strike{position:absolute;left:-3%;right:-3%;top:50%;height:.9rem;background:var(--pink);transform:scaleX(0) rotate(-2deg);transform-origin:left;animation:slam .5s .5s cubic-bezier(.2,1.4,.4,1) forwards}
+.hero h2{font-size:clamp(2.2rem,7vw,4.6rem);color:var(--yellow);text-transform:uppercase;max-width:14ch}
+.hero p.lead{max-width:56ch;font-size:1.2rem;margin:1.25rem 0 2rem}
+@keyframes slam{to{transform:scaleX(1) rotate(-2deg)}}
+@media (prefers-reduced-motion:reduce){.stub .strike{animation:none;transform:scaleX(1) rotate(-2deg)}html{scroll-behavior:auto}}
+/* Alert form */
+.alert{background:var(--yellow);color:var(--ink);padding:1.5rem;border-radius:4px;box-shadow:8px 8px 0 var(--pink);max-width:640px;transform:rotate(.6deg)}
+.alert h3{font-size:1.8rem;text-transform:uppercase;margin-bottom:.35rem}
+.alert p{margin:0 0 1rem}
+.row{display:grid;gap:.75rem}
+@media(min-width:640px){.row{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+input{width:100%;font:inherit;padding:.8rem .9rem;border:3px solid var(--ink);border-radius:3px;background:#fff;color:var(--ink)}
+button{font:inherit;font-family:Anton,Impact,sans-serif;font-size:1.25rem;letter-spacing:.04em;text-transform:uppercase;margin-top:1rem;width:100%;padding:.9rem 1rem;background:var(--ink);color:var(--yellow);border:0;border-radius:3px;cursor:pointer;transition:transform .15s,background .15s}
+button:hover{background:var(--pink);color:var(--ink);transform:translateY(-2px)}
+.interests{border:0;padding:0;margin:1rem 0 0;display:flex;flex-wrap:wrap;gap:.5rem}
+.interests legend{font-weight:700;font-size:.9rem;margin-bottom:.4rem;padding:0}
+.chip{display:inline-flex;margin:0;cursor:pointer;position:relative}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{border:3px solid var(--ink);border-radius:999px;padding:.35rem .85rem;font-weight:700;font-size:.92rem;transition:background .15s,color .15s,transform .15s}
+.chip:hover span{transform:translateY(-1px)}
+.chip input:checked+span{background:var(--ink);color:var(--yellow)}
+.chip input:focus-visible+span{outline:3px solid var(--pink);outline-offset:2px}
+#msg{margin:.9rem 0 0;font-weight:700;min-height:1.5em}
+/* Sections */
+section{padding:4rem 0}
+section h2{font-size:clamp(2.2rem,6vw,3.8rem);text-transform:uppercase;margin-bottom:2rem}
+.sources{background:var(--paper);color:var(--ink);transform:skewY(-2deg);margin:2rem 0}
+.sources>.wrap{transform:skewY(2deg)}
+.sources h2 span{background:var(--pink);color:var(--paper);padding:0 .3em}
+.cols{display:grid;gap:2.5rem}
+@media(min-width:800px){.cols{grid-template-columns:repeat(3,1fr)}}
+.cols h3{font-size:1.7rem;text-transform:uppercase;margin-bottom:.6rem}
+.cols p{margin:0;max-width:34ch}
+.cols div:nth-child(1) h3{color:var(--pink)}
+.cols div:nth-child(2) h3{color:#0a8ea3}
+.cols div:nth-child(3) h3{color:var(--ink)}
+.cols div:nth-child(4) h3{color:#7a2cff}
+@media(min-width:800px){.cols div:nth-child(4){grid-column:span 2}}
+.cols div:nth-child(5) h3{color:var(--pink)}
+.cols p.fn{margin-top:.75rem;font-size:.8rem;line-height:1.4;opacity:.8;max-width:none}
+.cols sup a{font-weight:700;text-decoration:none;color:var(--pink);padding:0 .15em}
+.cols div:nth-child(4) p{max-width:70ch}
+.cols div:nth-child(4) p+p{margin-top:.6rem;font-weight:700}
+/* Listings */
+.tickets{display:grid;gap:1rem}
+.t{display:grid;grid-template-columns:1fr;border:3px solid var(--paper);border-radius:6px;overflow:hidden}
+@media(min-width:700px){.t{grid-template-columns:1fr 14rem}}
+.t .main{padding:1.1rem 1.25rem}
+.t .main h3{font-size:1.9rem;text-transform:uppercase}
+.t .main p{margin:.35rem 0 0;opacity:.85}
+.t .side{padding:1.1rem 1.25rem;border-top:3px dashed var(--paper);display:flex;flex-direction:column;justify-content:center;gap:.25rem;font-weight:700}
+@media(min-width:700px){.t .side{border-top:0;border-left:3px dashed var(--paper)}}
+.new .side{background:var(--pink);color:var(--ink)}
+.extra .side{background:var(--cyan);color:var(--ink)}
+.rare .side{background:var(--yellow);color:var(--ink)}
+.t .side a{color:inherit;font-weight:700}
+.note{margin-top:1.25rem;font-size:.9rem;opacity:.75}
+.fair{background:var(--pink);color:var(--ink);padding:2rem 1.5rem;border-radius:4px;box-shadow:8px 8px 0 var(--yellow);transform:rotate(-.6deg);margin:1rem 0 4rem}
+.fair h2{font-size:clamp(2rem,5vw,3.2rem);text-transform:uppercase;margin-bottom:1rem}
+.fair ul{margin:0;padding:0;list-style:none;display:grid;gap:.9rem;max-width:62ch}
+.fair li{font-size:1.15rem;font-weight:500}
+.fair strong{font-weight:700}
+footer{padding:2.5rem 0 3rem;border-top:3px solid var(--pink);font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header>
+  <a class="logo" href="#">Soldout<b>-</b>Tickets.de</a>
+  <nav><a href="#aktuell">Aktuell</a><a href="#alert">Alert</a></nav>
+ </header>
+
+ <div class="hero">
+  <div class="stub"><h1>Ausverkauft?</h1><span class="strike" aria-hidden="true"></span></div>
+  <h2>Wir finden Tickets.</h2>
+  <p class="lead">Wir melden neue Kartenkontingente und Zusatzkonzerte mit freien Tickets. Und wir zeigen dir Tickets, die nur noch bei einzelnen Anbietern zu haben sind.</p>
+
+  <form class="alert" id="alert" novalidate>
+   <h3>E-Mail-Alert für dein Konzert</h3>
+   <p>Nenne uns das Konzert. Sobald Tickets auftauchen, schreiben wir dir.</p>
+   <div class="row">
+    <div><label for="band">Band oder Künstler</label><input id="band" name="band" required placeholder="z. B. Neon Riot"></div>
+    <div><label for="stadt">Stadt</label><input id="stadt" name="stadt" placeholder="z. B. Hamburg"></div>
+    <div><label for="datum">Datum</label><input id="datum" name="datum" type="date"></div>
+    <div><label for="mail">Deine E-Mail-Adresse</label><input id="mail" name="mail" type="email" required placeholder="du@beispiel.de"></div>
+   </div>
+   <fieldset class="interests">
+    <legend>Wofür interessierst du dich? (Mehrfachauswahl möglich)</legend>
+    <label class="chip"><input type="checkbox" name="interesse" value="Neue Kontingente"><span>Neue Kontingente</span></label>
+    <label class="chip"><input type="checkbox" name="interesse" value="Zusatzkonzerte"><span>Zusatzkonzerte</span></label>
+    <label class="chip"><input type="checkbox" name="interesse" value="Neue Platzkategorien"><span>Neue Platzkategorien</span></label>
+   </fieldset>
+   <button type="submit">Alert aktivieren</button>
+   <p id="msg" role="status" aria-live="polite"></p>
+  </form>
+ </div>
+</div>
+
+<div class="sources">
+ <div class="wrap">
+  <section>
+   <h2>Das <span>holen wir</span> für dich</h2>
+   <div class="cols">
+    <div><h3>Neue Kontingente</h3><p>Veranstalter geben Karten nachträglich frei. Wir sehen es und sagen dir Bescheid.</p></div>
+    <div><h3>Zusatzkonzerte</h3><p>Die Tour wird erweitert, und für den neuen Termin gibt es Tickets. Du erfährst es zuerst.</p></div>
+    <div><h3>Nur noch bei einzelnen Anbietern</h3><p>Bei deinem Ticketshop ist das Konzert ausverkauft? Bei einem anderen Anbieter gibt es vielleicht noch Karten.</p></div>
+    <div><h3>Deine Kategorie fehlt noch</h3><p>Dein Konzert ist nicht ausverkauft, aber deine Ticketkategorie gibt es (noch) nicht zu kaufen? Oft werden die besten Plätze in den ersten Reihen oder im Front of Stage zurückgehalten und gehen erst verspätet in den Verkauf. Wir informieren dich, sobald sie verfügbar sind.</p><p>Wer feiert schon auf den letzten Plätzen, wenn es auch ganz vorne geht…</p></div>
+    <div><h3>Wir warnen dich vor dem Ausverkauf</h3><p>Du bist zögerlich, ob du dir ein Ticket kaufen sollst, ärgerst dich aber, wenn das Konzert später ausverkauft ist? Wir analysieren die Ticketbörsen und warnen dich, wenn ein ausverkauftes Konzert droht.<sup><a href="#fn1" aria-label="Fußnote 1">1</a></sup></p><p class="fn" id="fn1"><sup>1</sup> Das Risiko eines ausverkauften Konzertes basiert auf statistischen Analysen hinsichtlich dem Verkaufsstatus in anderen Städten oder Ticketkategorien unter Berücksichtigung der Kapazität des Veranstaltungsortes. Es bietet keine sichere Vorhersage, dass das Konzert ausverkauft sein wird.</p></div>
+   </div>
+  </section>
+ </div>
+</div>
+
+<div class="wrap">
+ <section id="aktuell">
+  <h2>Gerade im Verkauf</h2>
+  <div class="tickets" id="feed">
+   <article class="t new"><div class="main"><h3>Neon Riot – Hamburg</h3><p>Neues Kontingent, heute freigegeben</p></div><div class="side"><span>Neu im Verkauf</span><span>ab 74 €</span></div></article>
+   <article class="t extra"><div class="main"><h3>Velvet Static – Köln</h3><p>Zusatzkonzert, Tickets verfügbar</p></div><div class="side"><span>Zusatzshow</span><span>ab 62 €</span></div></article>
+   <article class="t rare"><div class="main"><h3>Glitter Highway – Frankfurt</h3><p>Ausverkauft bei den meisten Shops, noch Karten bei einem Anbieter</p></div><div class="side"><span>Nur bei 1 Anbieter</span><span>ab 89 €</span></div></article>
+  </div>
+  <p class="note" id="feednote">Beispieldaten zur Veranschaulichung. Die Konzerte sind frei erfunden.</p>
+ </section>
+</div>
+
+<div class="wrap">
+ <aside class="fair" aria-labelledby="fair-h">
+  <h2 id="fair-h">Wir verkaufen keine Tickets.</h2>
+  <ul>
+   <li>Wir zeigen dir, <strong>wo oder wann</strong> du Tickets findest.</li>
+   <li>Du zahlst den <strong>regulären Ticketpreis</strong>, ohne Aufschlag von uns.</li>
+   <li>Wir finanzieren uns nur über Provisionen, die wir von den offiziellen Tickethändlern erhalten.</li>
+   <li><strong>Bitte nutze deshalb unsere Weiterleitung.</strong> So unterstützt du Soldout-Tickets.de, und es kostet dich nichts extra.</li>
+   <li>Und wenn du ein ganz großes Herz hast: Lass all deine Ticketkäufe über uns laufen. So können wir dich auch in Zukunft auf dem Laufenden halten.</li>
+  </ul>
+ </aside>
+</div>
+
+<footer><div class="wrap"><span>Soldout-Tickets.de</span><span>Wir verkaufen keine Tickets selbst. Links zu Tickethändlern sind Provisionslinks (Anzeige).</span><span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span></div></footer>
+
+<script>
+const f=document.getElementById('alert'),m=document.getElementById('msg');
+f.addEventListener('submit',e=>{
+ e.preventDefault();
+ const b=f.band.value.trim(),s=f.stadt.value.trim(),d=f.datum.value,a=f.mail.value.trim();
+ if(!b){m.textContent='Bitte gib eine Band oder einen Künstler an.';f.band.focus();return}
+ if(!/^\S+@\S+\.\S+$/.test(a)){m.textContent='Bitte gib eine gültige E-Mail-Adresse ein.';f.mail.focus();return}
+ const i=[...f.querySelectorAll('input[name=interesse]:checked')].map(x=>x.value);
+ if(!i.length){m.textContent='Bitte wähle mindestens ein Thema aus.';return}
+ const dt=d?new Date(d+'T00:00:00').toLocaleDateString('de-DE'):'';
+ const k=[b,s,dt].filter(Boolean).join(', ');
+ m.textContent='Alert aktiviert für '+k+' ('+i.join(', ')+'). Wir melden uns bei '+a+'.';
+ f.reset();
+});
+
+(async()=>{
+ try{
+  const r=await fetch('feed.json',{cache:'no-store'});if(!r.ok)return;
+  const d=await r.json();if(!d.news||!d.news.length)return;
+  const L={kontingent:['new','Neues Kontingent'],zusatz:['extra','Zusatzshow'],kategorie:['rare','Neue Platzkategorie']};
+  const box=document.getElementById('feed');box.textContent='';
+  d.news.slice(0,12).forEach(n=>{
+   const [c,l]=L[n.kind]||['new','Neu'];
+   const a=document.createElement('article');a.className='t '+c;
+   const m=document.createElement('div');m.className='main';
+   const h3=document.createElement('h3');h3.textContent=n.name;
+   const p=document.createElement('p');p.textContent=[n.venue,n.city,n.country].filter(Boolean).join(', ')+' · '+new Date(n.date+'T00:00:00').toLocaleDateString('de-DE');
+   m.append(h3,p);
+   const s=document.createElement('div');s.className='side';
+   const s1=document.createElement('span');s1.textContent=l;s.append(s1);
+   if(n.price_min){const s2=document.createElement('span');s2.textContent='ab '+Math.round(n.price_min)+' €';s.append(s2)}
+   if(/^https:\/\//.test(n.url||'')){const k=document.createElement('a');k.href=n.url;k.rel='sponsored noopener';k.textContent='Zu den Tickets → (Anzeige)';s.append(k)}
+   a.append(m,s);box.append(a);
+  });
+  const note=document.getElementById('feednote');if(note)note.textContent='Zuletzt aktualisiert: '+new Date(d.updated).toLocaleString('de-DE')+'. Links zu Tickethändlern sind Provisionslinks (Werbung).';
+ }catch(_){}
+})();
+</script>
+</body>
+</html>
